@@ -12,7 +12,7 @@ var _formidable = require('formidable');
 
 var _formidable2 = _interopRequireDefault(_formidable);
 
-var _bcrypt = require('bcrypt');
+var _bcrypt = require('bcryptjs');
 
 var _bcrypt2 = _interopRequireDefault(_bcrypt);
 

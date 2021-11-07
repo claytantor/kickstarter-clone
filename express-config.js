@@ -56,6 +56,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var MongoStore = (0, _connectMongo2.default)(_expressSession2.default);
 
+require('dotenv').config();
+
 exports.default = function (app) {
   app.set('views', _path2.default.join(__dirname, '../views'));
   app.engine('handlebars', (0, _expressHandlebars2.default)({ defaultLayout: 'main' }));

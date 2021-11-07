@@ -9,7 +9,7 @@ var _mailgunJs = require('mailgun-js');
 
 var _mailgunJs2 = _interopRequireDefault(_mailgunJs);
 
-var _bcrypt = require('bcrypt');
+var _bcrypt = require('bcryptjs');
 
 var _bcrypt2 = _interopRequireDefault(_bcrypt);
 
@@ -21,7 +21,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 // Email Template
 function emailTemplate(name, password) {
-  var htmlMsg = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">' + '<html xmlns="http://www.w3.org/1999/xhtml">' + '<body>' + '<p>Hey ' + name + ',</p>' + '<p>You requested to reset the password</p>' + '<p>Your new password is:</p>' + '<h4>' + password + '</h4>' + '<br/>' + '<p>All the best,</p>' + '<br />' + '<strong>KickstarterClone Team</strong>' + '</body>' + '</html>';
+  var htmlMsg = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">' + '<html xmlns="http://www.w3.org/1999/xhtml">' + '<body>' + '<p>Hey ' + name + ',</p>' + '<p>You requested to reset the password</p>' + '<p>Your new password is:</p>' + '<h4>' + password + '</h4>' + '<br/>' + '<p>All the best,</p>' + '<br />' + '<strong>GreenBaby Team</strong>' + '</body>' + '</html>';
   return htmlMsg;
 }
 
@@ -55,9 +55,9 @@ var sendNewPassword = exports.sendNewPassword = function sendNewPassword(req, re
           });
 
           var data = {
-            from: 'KickstarterClone Admin <postmaster@' + process.env.MAILGUN_DOMAIN + '>',
+            from: 'GreenBaby Admin <postmaster@' + process.env.MAILGUN_DOMAIN + '>',
             to: user.email,
-            subject: '[KickstarterClone Admin] - Password Reset',
+            subject: '[GreenBaby Admin] - Password Reset',
             html: emailTemplate(user.name, newPassword)
           };
 

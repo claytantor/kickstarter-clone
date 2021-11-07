@@ -1,6 +1,6 @@
 import cloudinary from 'cloudinary';
 import formidable from 'formidable';
-import bcrypt from 'bcrypt';
+import bcryptjsjs from 'bcryptjs';
 import User from '../models/user';
 import { 
   isOauthed,
@@ -233,7 +233,7 @@ const profileHandler = {
       }
 
       // Compare user input of current password with database's password
-      bcrypt.compare(currentPass, data.password, (bcryptErr, result) => {
+      bcryptjs.compare(currentPass, data.password, (bcryptErr, result) => {
         if (bcryptErr){
           req.flash('danger', 'Something went wrong. Try again...');
           return res.redirect('/profile/edit');
@@ -241,13 +241,13 @@ const profileHandler = {
         
         if (result === true) {
           // If the passwords match, hash the new password
-          bcrypt.genSalt(10, (genSaltErr, salt) => {
+          bcryptjs.genSalt(10, (genSaltErr, salt) => {
             if (genSaltErr) {
               req.flash('danger', 'Something went wrong in process. Please try again.');
               return res.redirect('/profile/edit');
             }
 
-            bcrypt.hash(newPassword, salt, (hashErr, hashedPass) => {
+            bcryptjs.hash(newPassword, salt, (hashErr, hashedPass) => {
               if (hashErr) {
                 req.flash('danger', 'Something went wrong in process. Try again.');
                 return res.redirect('/profile/edit');

@@ -1,5 +1,5 @@
 import Mongoose from 'mongoose';
-import bcrypt from 'bcrypt';
+import bcryptjsjs from 'bcryptjs';
 
 const userSchema = new Mongoose.Schema({
   name: {
@@ -61,13 +61,13 @@ userSchema.pre('save', function(next) {
   const user = this;
 
   // generate salt
-  bcrypt.genSalt(10, function(err, salt) {
+  bcryptjs.genSalt(10, function(err, salt) {
     if (err) {
       return next(err);
     }
 
     // hash (encrypt) the user's password using salt
-    bcrypt.hash(user.password, salt, function(error, hashedPassword) {
+    bcryptjs.hash(user.password, salt, function(error, hashedPassword) {
       if (error) {
         return next(err);
       }
@@ -82,7 +82,7 @@ userSchema.pre('save', function(next) {
 
 // compare password in the db and the one user input
 userSchema.methods.comparePassword = function(password) {
-  return bcrypt.compareSync(password, this.password);
+  return bcryptjs.compareSync(password, this.password);
 }
 
 const User = Mongoose.model('User', userSchema);

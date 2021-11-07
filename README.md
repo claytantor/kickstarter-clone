@@ -51,6 +51,9 @@ sudo npm install -g babel-cli
 - [Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/about.html)
 
 
+MONGOLAB_URI=mongodb://green-baby-poc-1:TZBAJYhUQmuUwptT@cluster0.ihghi.mongodb.net/green-baby-poc-1?retryWrites=true&w=majority npm run dev
+
+
 ### Deployment
 
 Signup Heroku and install heroku toolbelt

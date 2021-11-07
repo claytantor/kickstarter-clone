@@ -8,7 +8,7 @@ var _mongoose = require('mongoose');
 
 var _mongoose2 = _interopRequireDefault(_mongoose);
 
-var _bcrypt = require('bcrypt');
+var _bcrypt = require('bcryptjs');
 
 var _bcrypt2 = _interopRequireDefault(_bcrypt);
 

@@ -12,141 +12,150 @@ import passport from 'passport';
 export default (app) => {
   // Home
   app.route('/')
-    .get((req, res) => res.render('home'));
+    .get((req, res) => {
+      // console.log('index page');
+      // res.set("Content-Type", "text/txt");
+      // res.set("Connection", "close");
+      
+      // res.set(200);
+      res.render('home');
+      // res.end();
+      
+    });
 
   // About
   // app.route('/about')
     // .get((req, res) => res.render('about'));
 
-  // Sign up
-  app.route('/signup')
-    .all(isLoggedIn)
-    .get((req, res) => res.render('authentication/signup'))
-    .post(authHandler.signup);
+  // // Sign up
+  // app.route('/signup')
+  //   .all(isLoggedIn)
+  //   .get((req, res) => res.render('authentication/signup'))
+  //   .post(authHandler.signup);
 
-  // Log in
-  app.route('/login')
-    .all(isLoggedIn)
-    .get((req, res) => res.render('authentication/login'))
-    .post(authHandler.login);
+  // // Log in
+  // app.route('/login')
+  //   .all(isLoggedIn)
+  //   .get((req, res) => res.render('authentication/login'))
+  //   .post(authHandler.login);
 
-  // Log out
-  app.route('/logout')
-    .get(authHandler.logout);
+  // // Log out
+  // app.route('/logout')
+  //   .get(authHandler.logout);
 
-  // Forgot password
-  app.route('/forgot-password')
-    .all(isLoggedIn)
-    .get((req, res) => res.render('authentication/forgot-password'))
-    .post(sendNewPassword);
+  // // Forgot password
+  // app.route('/forgot-password')
+  //   .all(isLoggedIn)
+  //   .get((req, res) => res.render('authentication/forgot-password'))
+  //   .post(sendNewPassword);
 
-  // Terms of Use
-  app.route('/terms-of-use')
-    .get((req, res) => res.render('authentication/terms-of-use'));
+  // // Terms of Use
+  // app.route('/terms-of-use')
+  //   .get((req, res) => res.render('authentication/terms-of-use'));
 
-  // Privacy Policy
-  app.route('/privacy')
-    .get((req, res) => res.render('authentication/privacy'));
+  // // Privacy Policy
+  // app.route('/privacy')
+  //   .get((req, res) => res.render('authentication/privacy'));
 
-  // Discover Page
-  app.route('/discover')
-    .get(projectHandler.getDiscoverPage);
+  // // Discover Page
+  // app.route('/discover')
+  //   .get(projectHandler.getDiscoverPage);
 
-  // Project Lit
-  app.route('/projects')
-    .get(projectHandler.getProjectList);
+  // // Project Lit
+  // app.route('/projects')
+  //   .get(projectHandler.getProjectList);
 
-  // Project Detail
-  app.route('/projects/:id')
-    .get(projectHandler.getProjectPage);
+  // // Project Detail
+  // app.route('/projects/:id')
+  //   .get(projectHandler.getProjectPage);
 
-  // Create Project Page
-  app.route('/create-project')
-    .all(isAuthenticated)
-    .all(connectOAuthed)
-    .get((req, res) => res.render('projects/project-create'))
-    .post(projectHandler.postProjectCreate);
+  // // Create Project Page
+  // app.route('/create-project')
+  //   .all(isAuthenticated)
+  //   .all(connectOAuthed)
+  //   .get((req, res) => res.render('projects/project-create'))
+  //   .post(projectHandler.postProjectCreate);
 
-  // Public Profile Page
-  app.route('/users/:id')
-    .get(profileHandler.getPublicProfile);
+  // // Public Profile Page
+  // app.route('/users/:id')
+  //   .get(profileHandler.getPublicProfile);
 
-  // Profile
-  app.route('/profile')
-    .all(isAuthenticated)
-    .get(profileHandler.getProfile);
+  // // Profile
+  // app.route('/profile')
+  //   .all(isAuthenticated)
+  //   .get(profileHandler.getProfile);
 
-  // Profile Update
-  app.route('/profile/edit')
-    .all(isAuthenticated)
-    .get(profileHandler.getProfile);
+  // // Profile Update
+  // app.route('/profile/edit')
+  //   .all(isAuthenticated)
+  //   .get(profileHandler.getProfile);
 
-  app.route('/update-profile')
-    .all(isAuthenticated)
-    .post(profileHandler.updateProfile);
+  // app.route('/update-profile')
+  //   .all(isAuthenticated)
+  //   .post(profileHandler.updateProfile);
 
-  app.route('/update-profile-photo')
-    .all(isAuthenticated)
-    .post(profileHandler.updateProfilePhoto);
+  // app.route('/update-profile-photo')
+  //   .all(isAuthenticated)
+  //   .post(profileHandler.updateProfilePhoto);
 
-  app.route('/update-profile-email')
-    .all(isAuthenticated)
-    .post(profileHandler.updateProfileEmail);
+  // app.route('/update-profile-email')
+  //   .all(isAuthenticated)
+  //   .post(profileHandler.updateProfileEmail);
 
-  app.route('/update-profile-password')
-    .all(isAuthenticated)
-    .post(profileHandler.updateProfilePassword);
+  // app.route('/update-profile-password')
+  //   .all(isAuthenticated)
+  //   .post(profileHandler.updateProfilePassword);
 
-  // Project + Category Page
-  app.route('/categories/:name')
-    .get(projectHandler.getProjectWithCategory);
+  // // Project + Category Page
+  // app.route('/categories/:name')
+  //   .get(projectHandler.getProjectWithCategory);
 
-  // Stripe Connect - Custom Option Way 
-  app.route('/authorize')
-    .get(authHandler.authorize);
+  // // Stripe Connect - Custom Option Way 
+  // app.route('/authorize')
+  //   .get(authHandler.authorize);
 
-  app.route('/oauth/callback')
-    .get(authHandler.oauthCallback);
+  // app.route('/oauth/callback')
+  //   .get(authHandler.oauthCallback);
 
-  app.route('/projects/:id/comments')
-    .all(isAuthenticated)
-    .post(commentHandler.postComment);
+  // app.route('/projects/:id/comments')
+  //   .all(isAuthenticated)
+  //   .post(commentHandler.postComment);
 
-  app.route('/delete-comment')
-    .all(isAuthenticated)
-    .post(commentHandler.deleteComment);
+  // app.route('/delete-comment')
+  //   .all(isAuthenticated)
+  //   .post(commentHandler.deleteComment);
 
-  /* >>>>>>>>> Stripe Connect - Passport Oauth way 
-  // http://passportjs.org/docs/oauth
-  app.route('/authorize')
-    .get(passport.authenticate('provider'));
-  app.route('/oauth/callback')
-    .get(authHandler.oauthCallBackPassport);
-  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+  // /* >>>>>>>>> Stripe Connect - Passport Oauth way 
+  // // http://passportjs.org/docs/oauth
+  // app.route('/authorize')
+  //   .get(passport.authenticate('provider'));
+  // app.route('/oauth/callback')
+  //   .get(authHandler.oauthCallBackPassport);
+  // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
 
-  // Create Reward (Only creator can do it)
-  app.route('/projects/:id/create-reward')
-    .all(isAuthenticated)
-    .all(connectOAuthed)
-    .get(projectHandler.getRewardForm)
-    .post(projectHandler.createRewards);
+  // // Create Reward (Only creator can do it)
+  // app.route('/projects/:id/create-reward')
+  //   .all(isAuthenticated)
+  //   .all(connectOAuthed)
+  //   .get(projectHandler.getRewardForm)
+  //   .post(projectHandler.createRewards);
 
-  // Project rewards
-  app.route('/projects/:id/rewards')
-    .all(isAuthenticated)
-    .get(projectHandler.getProjectRewardsPage);
-    // .post(paymentHandler.backProject);  
+  // // Project rewards
+  // app.route('/projects/:id/rewards')
+  //   .all(isAuthenticated)
+  //   .get(projectHandler.getProjectRewardsPage);
+  //   // .post(paymentHandler.backProject);  
 
-  // Pay for chosen reward for the project
-  app.route('/projects/:projectid/rewards/:rewardid')
-    .all(isAuthenticated)
-    .get(projectHandler.getChosenRewardPage)
-    .post(paymentHandler.backProject);   
+  // // Pay for chosen reward for the project
+  // app.route('/projects/:projectid/rewards/:rewardid')
+  //   .all(isAuthenticated)
+  //   .get(projectHandler.getChosenRewardPage)
+  //   .post(paymentHandler.backProject);   
 
-  // Search Projects
-  app.route('/search')
-    .get(searchHandler.getSearchResult)
-    .post(searchHandler.postSearch);
+  // // Search Projects
+  // app.route('/search')
+  //   .get(searchHandler.getSearchResult)
+  //   .post(searchHandler.postSearch);
   
   // Display 404 page when user tries to visit undefined routes
   app.route('*')

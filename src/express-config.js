@@ -5,12 +5,16 @@ import exphbs from 'express-handlebars';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
-import _MongoStore from 'connect-mongo';
-const MongoStore = _MongoStore(session);
+// import _MongoStore from 'connect-mongo';
+// const MongoStore = _MongoStore(session);
 import morgan from 'morgan';
 import helmet from 'helmet';
 import flash from 'connect-flash';
 import passport from 'passport';
+
+const mongoAtlasUri = "mongodb+srv://green-baby-poc-1:TZBAJYhUQmuUwptT@cluster0.ihghi.mongodb.net/green-baby-poc-1?retryWrites=true"
+const sessionSecret = 'Yazza45Yamz!'
+
 
 export default (app) => {
   app.set('views', path.join(__dirname, '../views'));
@@ -23,15 +27,12 @@ export default (app) => {
   app.use(cookieParser());
 
   app.use(session({
-    'secret': process.env.SESSION_SECRET,
-    'cookie': {'maxAge': 1209600000},
-    'store': new MongoStore({
-      url: process.env.MONGOLAB_URI,
-      autoReconnect: true
-    }),
-    'resave': true,
-    'saveUninitialized': true
-  }));
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true }
+  }))
+
 
   app.use(morgan('dev'));
   app.use(helmet());
@@ -64,4 +65,5 @@ export default (app) => {
     delete req.session.flash;
     next();
   });
+
 }

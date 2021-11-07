@@ -1,5 +1,5 @@
 import Mailgun from 'mailgun-js';
-import bcrypt  from 'bcrypt';
+import bcryptjs from 'bcryptjs';
 import User from '../models/user';
 // Email Template
 function emailTemplate(name, password){
@@ -14,7 +14,7 @@ function emailTemplate(name, password){
        '<br/>'+
       '<p>All the best,</p>'+
       '<br />' +
-      '<strong>KickstarterClone Team</strong>'+
+      '<strong>GreenBaby Team</strong>'+
     '</body>'+
   '</html>';
   return htmlMsg;
@@ -35,8 +35,8 @@ export const sendNewPassword = function(req, res){
 
   let newPassword = generateNewPassword();
 
-  bcrypt.genSalt(10, function(err, salt) {
-    bcrypt.hash(newPassword, salt, function(err, hashedPassword) {
+  bcryptjs.genSalt(10, function(err, salt) {
+    bcryptjs.hash(newPassword, salt, function(err, hashedPassword) {
 
       const query  = {email: email};
       const update = {$set: {password: hashedPassword}};
@@ -50,9 +50,9 @@ export const sendNewPassword = function(req, res){
           });
 
           let data = {
-            from: 'KickstarterClone Admin <postmaster@'+process.env.MAILGUN_DOMAIN+'>',
+            from: 'GreenBaby Admin <postmaster@'+process.env.MAILGUN_DOMAIN+'>',
             to: user.email,
-            subject: '[KickstarterClone Admin] - Password Reset',
+            subject: '[GreenBaby Admin] - Password Reset',
             html: emailTemplate(user.name, newPassword)
           };
 
