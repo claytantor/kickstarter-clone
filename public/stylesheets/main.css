@@ -1,13 +1,15 @@
 html, body {
-  font-family: 'Helvetica Neue', Helvetica, Arial;
+  font-family: 'Roboto', sans-serif;
 }
+
+
 
 li {
   list-style: none;
 }
 
 .main {
-  margin-top: 60px;
+  margin-top: 90px;
 }
 
 .brand-color {
@@ -22,10 +24,15 @@ form .form-group select {
   letter-spacing: 1px;
 }
 
+
+a.navbar-brand {
+  font-family: 'Fredoka One', cursive;
+}
+
 /* Overwrite Bootstrap */
 a.navbar-brand.brand-color,
 a.navbar-brand.brand-color:hover {
-  font-family: Impact;
+  font-family: 'Fredoka One', cursive;
   font-weight: bold;
   font-size: 1.4em;
   color: #2bde73;

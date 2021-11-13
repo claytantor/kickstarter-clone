@@ -1,6 +1,6 @@
 body,
 html {
-  font-family: 'Helvetica Neue',Helvetica,Arial;
+  font-family: 'Roboto', sans-serif;
 }
 
 li {
@@ -15,6 +15,10 @@ li {
   color: #2bde73;
 }
 
+a.navbar-brand {
+  font-family: 'Work Sans', sans-serif;
+}
+
 form .form-group input,
 form .form-group select,
 form .form-group textarea {
@@ -24,7 +28,7 @@ form .form-group textarea {
 
 a.navbar-brand.brand-color,
 a.navbar-brand.brand-color:hover {
-  font-family: Impact;
+  font-family: 'Work Sans', sans-serif;
   font-weight: 700;
   font-size: 1.4em;
   color: #2bde73;
