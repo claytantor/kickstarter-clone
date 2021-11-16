@@ -5,3 +5,6 @@ src/config.js
 .vagrant
 .vagrant/
 .vagrant/*
+.vagrant
+.env
+.env_copy
